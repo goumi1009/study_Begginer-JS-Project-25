@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-color: royalblue;
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.counter-box {
+  padding: 30px;
+  width: 500px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.counter-box h1 {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.counter-box .count {
+  margin: 20px 0 25px;
+  font-size: 70px;
+  font-weight: 700;
+}
+
+.counter-box button {
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.counter-box button:last-child {
+  margin-left: 8px;
+}
