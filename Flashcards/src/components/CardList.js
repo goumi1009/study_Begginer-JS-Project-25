@@ -11,9 +11,9 @@ export default function ({ targetEl, initialstate }) {
   this.render = () => {
     const cardListHTML = this.state
       .map(
-        (card) => `<li id="card-${i}" class="${card.visible ? 'view' : 'none'}">
+        (card) => `<li>
         <p class="question">${card.question}</p>
-        <p class="answer" style="opacity: ${card.visible ? `1` : '0'}">${
+        <p class="answer" style="display: ${card.visible ? 'block' : 'none'}">${
           card.answer
         }</p>
       </li>`
@@ -24,9 +24,9 @@ export default function ({ targetEl, initialstate }) {
 
   listEl.addEventListener('click', (e) => {
     const selectCard = e.target.closest('li');
-    console.log(selectCard);
-    // 아니.. 어떻게 찾아야 하는거여 .. 왜 null로 나오지 ?
-    // .classlist.add('view');
-    // e.target.closest('.answer').style.display = 'block';
+    // 근데 이렇게 dom을 바로 조작하는게 맞나? ... state를 바꿔줘야 할거 같은데
+    selectCard.querySelector('.answer').style.display === 'block'
+      ? (selectCard.querySelector('.answer').style.display = 'none')
+      : (selectCard.querySelector('.answer').style.display = 'block');
   });
 }
