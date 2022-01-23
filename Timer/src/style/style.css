@@ -1,0 +1,14 @@
+body {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  background: rgb(18, 4, 51);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer {
+  color: #fff;
+  font-size: 80px;
+}
