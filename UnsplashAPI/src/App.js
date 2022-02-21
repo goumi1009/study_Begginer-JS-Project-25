@@ -48,7 +48,7 @@ export default function ({ targetEl }) {
     const searchPhotosHTML = this.searchPhotos
       .map(
         (photo) => `
-      <li><img src="${photo.urls.thumb}" alt="" /></li>
+      <li><img src="${photo.urls.small_s3}" alt="" /></li>
     `
       )
       .join('');
