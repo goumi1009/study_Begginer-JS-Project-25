@@ -2,7 +2,13 @@ export default function App(targetEl) {
   this.quote = '';
   this.setQuote = (nextQuote) => {
     this.quote = nextQuote;
-    this.render();
+    this.quoteRender();
+  };
+
+  this.isTyping = false;
+  this.setIsTyping = (isTyping) => {
+    this.isTyping = isTyping;
+    this.cursorRenter();
   };
 
   const requestQuote = () => {
@@ -13,23 +19,31 @@ export default function App(targetEl) {
 
   const typingText = (n) => {
     if (n > this.quote.length - 1) {
+      this.setIsTyping(false);
       setTimeout(() => {
         targetEl.textContent = '';
         requestQuote();
-      }, 2000);
-      retrun;
+      }, 3000);
+      return;
     }
 
+    this.setIsTyping(true);
     setTimeout(() => {
       targetEl.textContent += this.quote[n];
-      // n += 1;
-      // 민자쓰 팁
       typingText(++n);
     }, 100);
   };
 
-  this.render = () => {
+  this.quoteRender = () => {
     typingText(0);
+  };
+
+  this.cursorRenter = () => {
+    if (this.isTyping) {
+      targetEl.classList.remove('waiting');
+    } else {
+      targetEl.classList.add('waiting');
+    }
   };
 
   this.init = () => {
