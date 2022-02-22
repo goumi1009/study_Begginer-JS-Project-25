@@ -1,3 +1,7 @@
+const INIT_WAITING_TIME = 3000;
+const TYPING_END_WAITING_TIME = 3000;
+const TYPING_SPEED = 100;
+
 export default function App(targetEl) {
   this.quote = '';
   this.setQuote = (nextQuote) => {
@@ -23,7 +27,7 @@ export default function App(targetEl) {
       setTimeout(() => {
         targetEl.textContent = '';
         requestQuote();
-      }, 3000);
+      }, TYPING_END_WAITING_TIME);
       return;
     }
 
@@ -31,7 +35,7 @@ export default function App(targetEl) {
     setTimeout(() => {
       targetEl.textContent += this.quote[n];
       typingText(++n);
-    }, 100);
+    }, TYPING_SPEED);
   };
 
   this.quoteRender = () => {
@@ -49,7 +53,7 @@ export default function App(targetEl) {
   this.init = () => {
     setTimeout(() => {
       requestQuote();
-    }, 1000);
+    }, INIT_WAITING_TIME);
   };
   this.init();
 }
