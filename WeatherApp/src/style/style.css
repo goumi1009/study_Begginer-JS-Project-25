@@ -8,3 +8,45 @@ body {
   background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 50%);
   height: 100vh;
 }
+
+.search-form {
+  display: block;
+  padding: 40px 20px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.4);
+  box-sizing: border-box;
+  transition: 0.3s ease-out;
+}
+
+.search-form.show {
+  transform: translateY(-100%);
+}
+
+.search-form input {
+  display: block;
+  margin: 0 auto;
+  width: 320px;
+  border: 0;
+  border-radius: 4px;
+  line-height: 32px;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.search-form label {
+  display: block;
+  margin-bottom: 16px;
+  text-align: center;
+  font-weight: bold;
+}
+
+button {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 8px;
+  border: 0;
+  border-radius: 4px;
+  background-color: #8ec5fc;
+  color: #fff;
+}

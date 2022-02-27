@@ -1,31 +1,49 @@
+import Button from './components/Button.js';
 import Input from './components/Input.js';
 const API_KEY = 'a65fb08488afa0b98629a4a7d5bb4123';
 
 export default function ({ targetEl }) {
-  const searchFormEl = document.createElement('form');
-  searchFormEl.classList.add('search-form');
-  targetEl.appendChild(searchFormEl);
-
-  const searchToggleEl = document.createElement('button');
-  searchToggleEl.type = 'button';
-  searchToggleEl.textContent = 'toggle';
-  searchFormEl.appendChild(searchToggleEl);
-
-  const searchInput = new Input({
-    targetEl: searchFormEl,
-    labelText: 'Search weather',
-  });
+  this.showSearch = false;
+  this.setShowSearch = (showState) => {
+    this.showSearch = showState;
+    this.formRender();
+  };
 
   this.state = {
     keyword: '',
     weather: {},
   };
-
   this.setState = (nextState) => {
     this.state = nextState;
+    console.log(nextState);
     searchInput.setState('');
     this.weatherRender();
   };
+
+  const searchFormEl = document.createElement('form');
+  searchFormEl.classList.add('search-form');
+  targetEl.appendChild(searchFormEl);
+
+  this.formRender = () => {
+    if (this.showSearch) {
+      searchFormEl.classList.add('show');
+    } else {
+      searchFormEl.classList.remove('show');
+    }
+  };
+
+  new Button({
+    targetEl,
+    textContent: 'Toggle',
+    onClick: (e) => {
+      this.setShowSearch(!this.showSearch);
+    },
+  });
+
+  const searchInput = new Input({
+    targetEl: searchFormEl,
+    labelText: 'Search weather',
+  });
 
   const requestWeather = (keyword) => {
     fetch(
