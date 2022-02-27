@@ -15,7 +15,6 @@ export default function ({ targetEl }) {
   };
   this.setState = (nextState) => {
     this.state = nextState;
-    console.log(nextState);
     searchInput.setState('');
     this.weatherRender();
   };
@@ -63,10 +62,17 @@ export default function ({ targetEl }) {
     requestWeather(searchInput.state);
   });
 
-  const weatherIcon = document.createElement('img');
+  const weatherBox = document.createElement('div');
+  weatherBox.classList.add('weather-box');
 
   this.weatherRender = () => {
-    weatherIcon.src = `./src/assets/${this.state.weather.weather[0].icon}.svg`;
-    targetEl.appendChild(weatherIcon);
+    const { weather } = this.state;
+    weatherBox.innerHTML = `
+      <img src="./src/assets/${weather.weather[0].icon}.svg" alt="" />
+      <h1>${weather.name}</h1>
+      <p>${weather.main.temp}℃</p>
+      
+    `;
+    targetEl.appendChild(weatherBox);
   };
 }
