@@ -1,0 +1,73 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: url('https://images.unsplash.com/photo-1554696468-19f8c7a71ad5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')
+    no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+form {
+  display: block;
+}
+
+input {
+  display: block;
+  border: 0;
+  border-bottom: 2px solid #ddd;
+  font-size: 32px;
+  width: 320px;
+  margin: 30px auto;
+  text-align: center;
+  background-color: transparent;
+  color: #fff;
+}
+
+li {
+  position: relative;
+  list-style: none;
+  margin: 20px auto;
+  padding: 20px;
+  width: 60%;
+  background-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 3px 3px 10px 0 rgba(54, 54, 54, 0.2) inset;
+  border-radius: 5px;
+  text-align: center;
+  transition: 0.3s ease-out;
+  color: #fff;
+  font-size: 24px;
+}
+
+a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+a::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3)
+    url('https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1568164922/noticon/hyq3qjcx8pnzpluk5vsg.svg')
+    no-repeat center;
+  background-size: auto 50%;
+  opacity: 0;
+  transition: 0.3s ease-out;
+}
+
+li:hover {
+  transform: scale(1.2);
+  z-index: 1;
+}
+
+li:hover a::before {
+  opacity: 1;
+}
