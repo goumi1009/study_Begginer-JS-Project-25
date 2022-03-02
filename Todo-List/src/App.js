@@ -1,4 +1,5 @@
 import Header from './components/Header.js';
+import TodoCount from './components/TodoCount.js';
 import TodoForm from './components/TodoForm.js';
 import TodoList from './components/TodoList.js';
 import { createUUID } from './util.js';
@@ -8,6 +9,7 @@ export default function ({ targetEl }) {
   this.setTodoList = (changedTodoList) => {
     this.todoList = changedTodoList;
     todos.setTodos(this.todoList);
+    todoCount.setState(this.todoList);
   };
 
   new Header({
@@ -45,4 +47,6 @@ export default function ({ targetEl }) {
       );
     },
   });
+
+  const todoCount = new TodoCount({ targetEl, initialstate: this.todoList });
 }
