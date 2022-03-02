@@ -5,6 +5,8 @@ export default function ({ targetEl, onSubmit }) {
   const formEl = createEl('form');
 
   const inputEl = createEl('input');
+  inputEl.placeholder = '할일 입력';
+  inputEl.title = '할일 입력';
   formEl.appendChild(inputEl);
 
   new Button({
