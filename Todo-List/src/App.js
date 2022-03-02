@@ -3,11 +3,15 @@ import TodoCount from './components/TodoCount.js';
 import TodoForm from './components/TodoForm.js';
 import TodoList from './components/TodoList.js';
 import { createUUID } from './util.js';
+import { getLocalStorage, setLocalStorage } from './storage.js';
+
+const TODOS_STORAGE_KEY = 'todos';
 
 export default function ({ targetEl }) {
-  this.todoList = [];
+  this.todoList = getLocalStorage(TODOS_STORAGE_KEY, []);
   this.setTodoList = (changedTodoList) => {
     this.todoList = changedTodoList;
+    setLocalStorage(TODOS_STORAGE_KEY, this.todoList);
     todos.setTodos(this.todoList);
     todoCount.setState(this.todoList);
   };
