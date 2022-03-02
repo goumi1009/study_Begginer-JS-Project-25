@@ -6,6 +6,6 @@ export default function ({ targetEl, textContent, type = 'button', onClick }) {
   targetEl.appendChild(buttonEl);
 
   buttonEl.addEventListener('click', (e) => {
-    onClick(e);
+    onClick && onClick(e);
   });
 }
