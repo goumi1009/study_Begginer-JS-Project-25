@@ -16,7 +16,6 @@ export default function ({ targetEl, initialstate }) {
     ).length;
     const totalCount = this.state.length;
     countEl.textContent = `${completeCount} / ${totalCount}`;
-    console.log(completeCount, totalCount);
   };
   this.render();
 }
