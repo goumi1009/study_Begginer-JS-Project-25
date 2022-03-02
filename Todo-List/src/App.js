@@ -1,6 +1,7 @@
 import Header from './components/Header.js';
 import TodoForm from './components/TodoForm.js';
 import TodoList from './components/TodoList.js';
+import { createUUID } from './util.js';
 
 export default function ({ targetEl }) {
   this.todoList = [];
@@ -20,6 +21,7 @@ export default function ({ targetEl }) {
       this.setTodoList([
         ...this.todoList,
         {
+          id: createUUID(),
           isComplete: false,
           content: todoText,
         },
@@ -30,21 +32,17 @@ export default function ({ targetEl }) {
   const todos = new TodoList({
     targetEl,
     todos: this.todoList,
-    onDelete: (e, currentId) => {
-      const changedTodoList = this.todoList.filter(
-        (item, i) => i !== Number(currentId)
-      );
-
-      this.setTodoList(changedTodoList);
+    onDelete: (currentId) => {
+      this.setTodoList(this.todoList.filter(({ id }) => id !== currentId));
     },
-    onChangeComplete: (e, currentId) => {
-      const changedTodoList = this.todoList.map((item, i) =>
-        i === Number(currentId)
-          ? { ...item, isComplete: !item.isComplete }
-          : item
+    onChangeComplete: (currentId) => {
+      this.setTodoList(
+        this.todoList.map((item) =>
+          item.id === currentId
+            ? { ...item, isComplete: !item.isComplete }
+            : item
+        )
       );
-      console.log(changedTodoList, currentId);
-      this.setTodoList(changedTodoList);
     },
   });
 }

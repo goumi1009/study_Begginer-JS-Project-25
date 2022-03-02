@@ -11,10 +11,10 @@ export default function ({ targetEl, todos = [], onDelete, onChangeComplete }) {
   this.render = () => {
     const listHTML = this.todos
       .map(
-        (todo, i) => `
-      <li id="${i}">
-        <input type="checkbox" ${todo.isComplete && 'checked'} />
-        <p>${todo.content}</p>
+        ({ id, isComplete, content }) => `
+      <li id="${id}">
+        <input type="checkbox" ${isComplete && 'checked'} />
+        <p>${content}</p>
         <button type="button">삭제</button>
       </li>
     `
@@ -31,12 +31,13 @@ export default function ({ targetEl, todos = [], onDelete, onChangeComplete }) {
     const delButton = e.target.closest('button');
     const checkComplete = e.target.closest('input');
     const currentId = e.target.closest('li').id;
+
     if (e.target === delButton) {
-      onDelete(e, currentId);
+      onDelete(currentId);
     }
 
     if (e.target === checkComplete) {
-      onChangeComplete(e, currentId);
+      onChangeComplete(currentId);
     }
   });
 }

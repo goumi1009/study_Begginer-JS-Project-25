@@ -11,7 +11,6 @@ export default function ({ targetEl, onSubmit }) {
     targetEl: formEl,
     textContent: 'ADD',
     type: 'submit',
-    onClick: () => {},
   });
   targetEl.appendChild(formEl);
 
