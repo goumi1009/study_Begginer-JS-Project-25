@@ -1,18 +1,7 @@
-/**
- * TODO
- * 투두 추가
- * - [] 투두 입력 인풋에 내용을 입력하고 submit 버튼을 누르면 새로운 투두가 추가 된다.
- * - [x] 사용자 입력값이 빈 값이라면 추가 되지 않는다.
- * - [x] 추가되고 나면 인풋이 빈값으로 초기화 된다.
- * 투두 완료
- * - [] 투두 완료 버튼을 누르면 투두의 완료 상태가 토글 된다.
- * 투두 삭제
- * - [] 투두 삭제 버튼을 누르면 해당 투두가 삭제 된다.
- *
- */
-
 import Button from './components/Button.js';
+import Header from './components/Header.js';
 import TodoList from './components/TodoList.js';
+import { createEl } from './util.js';
 
 export default function ({ targetEl }) {
   this.todoList = [];
@@ -21,10 +10,7 @@ export default function ({ targetEl }) {
     todos.setTodos(this.todoList);
   };
 
-  const createEl = (element) => document.createElement(element);
-  const headerEl = createEl('h1');
-  headerEl.textContent = '✔ To-do List';
-  targetEl.appendChild(headerEl);
+  new Header({ targetEl, textContent: '✔ To-do List' });
 
   const formEl = createEl('form');
   const inputEl = createEl('input');
