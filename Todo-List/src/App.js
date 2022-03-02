@@ -1,7 +1,6 @@
-import Button from './components/Button.js';
 import Header from './components/Header.js';
+import TodoForm from './components/TodoForm.js';
 import TodoList from './components/TodoList.js';
-import { createEl } from './util.js';
 
 export default function ({ targetEl }) {
   this.todoList = [];
@@ -10,35 +9,22 @@ export default function ({ targetEl }) {
     todos.setTodos(this.todoList);
   };
 
-  new Header({ targetEl, textContent: '✔ To-do List' });
-
-  const formEl = createEl('form');
-  const inputEl = createEl('input');
-  formEl.appendChild(inputEl);
-  new Button({
-    targetEl: formEl,
-    textContent: 'ADD',
-    type: 'submit',
-    onClick: () => {},
+  new Header({
+    targetEl,
+    textContent: '✔ To-do List',
   });
-  targetEl.appendChild(formEl);
 
-  formEl.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const todoInput = e.target.querySelector('input');
-    if (!todoInput.value) {
-      alert('입력된 값이 없습니다. 값을 입력 해 주세요.');
-      return;
-    }
-    this.setTodoList([
-      ...this.todoList,
-      {
-        isComplete: false,
-        content: todoInput.value,
-      },
-    ]);
-
-    todoInput.value = '';
+  new TodoForm({
+    targetEl,
+    onSubmit: (todoText) => {
+      this.setTodoList([
+        ...this.todoList,
+        {
+          isComplete: false,
+          content: todoText,
+        },
+      ]);
+    },
   });
 
   const todos = new TodoList({

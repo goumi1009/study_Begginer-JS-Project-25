@@ -1,5 +1,6 @@
+import { createEl } from './../util.js';
 export default function ({ targetEl, todos = [], onDelete, onChangeComplete }) {
-  const ulEl = document.createElement('ul');
+  const ulEl = createEl('ul');
 
   this.todos = todos;
   this.setTodos = (nextTodos) => {
@@ -12,8 +13,8 @@ export default function ({ targetEl, todos = [], onDelete, onChangeComplete }) {
       .map(
         (todo, i) => `
       <li id="${i}">
-        <p>${todo.content}</p>
         <input type="checkbox" ${todo.isComplete && 'checked'} />
+        <p>${todo.content}</p>
         <button type="button">삭제</button>
       </li>
     `
