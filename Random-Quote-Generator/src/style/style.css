@@ -3,7 +3,7 @@ body {
   margin: 0;
 }
 
-.container {
+#app {
   display: flex;
   flex-direction: column;
   align-items: center;
