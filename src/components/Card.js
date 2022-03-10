@@ -3,7 +3,7 @@ export default function ({ targetEl, itemData }) {
   cardEl.classList.add('card');
   cardEl.innerHTML = `
     <a href="${itemData.url}">
-      <img src="https://picsum.photos/300/200?random=${itemData.id}" alt="" />
+      <img src="./src/assets/image ${itemData.id}.png" alt="" />
       <span>Test it!</span>
     </a>
     <dl>
