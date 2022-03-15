@@ -1,7 +1,5 @@
-export default function ({ targetEl, initialstate }) {
+export default function ({ targetEl, initialstate, onSubmit, onChange }) {
   const quizzesEl = document.createElement('form');
-  quizzesEl.className = 'question-section';
-
   const submitButtonEl = document.createElement('button');
   submitButtonEl.textContent = 'Submit Quiz';
 
@@ -16,7 +14,7 @@ export default function ({ targetEl, initialstate }) {
       .map(
         ({ question, answers }, index) => `
         
-      <article class="question">
+      <article class="card" data-question-id="${index}">
         <h2>
           <em>Question ${index + 1}</em>
           <br /><strong>${question}</strong>
@@ -27,7 +25,9 @@ export default function ({ targetEl, initialstate }) {
             .map(
               (answer, i) => `
             <li>
-              <input type="radio" name="q${index}answers" id="q${index}answer${i}" />
+              <input type="radio" data-answer-id="${i}" name="q${index}answers" id="q${index}answer${i}" ${
+                this.state.submission[index] === i ? 'checked' : ''
+              } />
               <label for="q${index}answer${i}">${answer}</label>
             </li>
           `
@@ -38,9 +38,9 @@ export default function ({ targetEl, initialstate }) {
     `
       )
       .join('')}
-      <button style="display: ${
-        this.state.isTake ? 'block' : 'none'
-      }">Submit Quiz</button>`;
+      <button style="display: ${this.state.isTake ? 'block' : 'none'}" ${
+      this.state.isSubmit ? 'disabled' : ''
+    }>Submit Quiz</button>`;
   };
   this.render();
 
@@ -48,5 +48,15 @@ export default function ({ targetEl, initialstate }) {
 
   quizzesEl.addEventListener('submit', (e) => {
     e.preventDefault();
+    onSubmit && onSubmit(e);
+  });
+
+  quizzesEl.addEventListener('change', (e) => {
+    const { questionId } = e.target.closest('.card').dataset;
+    const { answerId } = e.target.dataset;
+    onChange({
+      questionId,
+      answerId,
+    });
   });
 }

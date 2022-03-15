@@ -1,10 +1,13 @@
 import CreateQuestion from './components/CreateQuiz.js';
 import Header from './components/Header.js';
+import QuizResult from './components/QuizResult.js';
 import Quizzes from './components/Quizzes.js';
 
 export default function ({ targetEl }) {
   const contentWrapperEl = document.createElement('section');
   contentWrapperEl.className = 'container';
+  const quizSectionEl = document.createElement('section');
+  quizSectionEl.className = 'quiz-section';
 
   this.state = {
     pageTitle: 'Quiz Pro',
@@ -15,6 +18,8 @@ export default function ({ targetEl }) {
       correctIndex: null,
     },
     isTake: false,
+    isSubmit: false,
+    submission: [],
   };
 
   new Header({
@@ -74,7 +79,7 @@ export default function ({ targetEl }) {
       } else if (e.target.type === 'text') {
         const { answerId } = e.target.closest('.form-row').dataset;
         const nextState = this.state.newQuestion.answers.map((answer, i) =>
-          parseInt(answerId) === i ? e.target.value : answer
+          Number(answerId) === i ? e.target.value : answer
         );
         this.setState({
           ...this.state,
@@ -89,6 +94,7 @@ export default function ({ targetEl }) {
       this.setState({
         ...this.state,
         quizzes: [],
+        isSubmit: false,
         isTake: false,
       });
     },
@@ -100,11 +106,45 @@ export default function ({ targetEl }) {
     },
   });
 
+  contentWrapperEl.appendChild(quizSectionEl);
+
   const quizzes = new Quizzes({
-    targetEl: contentWrapperEl,
+    targetEl: quizSectionEl,
     initialstate: {
       quizzes: this.state.quizzes,
       isTake: this.state.isTake,
+      isSubmit: this.state.isSubmit,
+      submission: this.state.submission,
+    },
+    onSubmit: (e) => {
+      this.setState({
+        ...this.state,
+        isSubmit: true,
+      });
+    },
+    onChange: ({ questionId, answerId }) => {
+      const nextSubmission = [...this.state.submission];
+      nextSubmission[questionId] = Number(answerId);
+      this.setState({
+        ...this.state,
+        submission: nextSubmission,
+      });
+    },
+  });
+
+  const quizResult = new QuizResult({
+    targetEl: quizSectionEl,
+    initialState: {
+      submission: this.state.submission,
+      quizzes: this.state.quizzes,
+      isSubmit: this.state.isSubmit,
+    },
+    onRetake: () => {
+      this.setState({
+        ...this.state,
+        isSubmit: false,
+        submission: [],
+      });
     },
   });
 
@@ -117,6 +157,13 @@ export default function ({ targetEl }) {
     quizzes.setState({
       quizzes: this.state.quizzes,
       isTake: this.state.isTake,
+      isSubmit: this.state.isSubmit,
+      submission: this.state.submission,
+    });
+    quizResult.setState({
+      submission: this.state.submission,
+      quizzes: this.state.quizzes,
+      isSubmit: this.state.isSubmit,
     });
   };
 }
