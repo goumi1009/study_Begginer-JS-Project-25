@@ -1,91 +1,122 @@
-import CreateQuestion from './components/CreateQuestion.js';
+import CreateQuestion from './components/CreateQuiz.js';
 import Header from './components/Header.js';
-import Questions from './components/Questions.js';
+import Quizzes from './components/Quizzes.js';
 
 export default function ({ targetEl }) {
   const contentWrapperEl = document.createElement('section');
   contentWrapperEl.className = 'container';
 
   this.state = {
-    title: 'Quiz Pro',
-    questions: [
-      {
-        id: 1,
-        question: '질문',
-        answers: [
-          {
-            isCorrect: false,
-            text: '답변1',
-          },
-          {
-            isCorrect: false,
-            text: '답변2',
-          },
-          {
-            isCorrect: true,
-            text: '답변3',
-          },
-          {
-            isCorrect: false,
-            text: '답변4',
-          },
-        ],
-      },
-      {
-        id: 2,
-        question: '질문2',
-        answers: [
-          {
-            isCorrect: true,
-            text: '답변1',
-          },
-          {
-            isCorrect: false,
-            text: '답변2',
-          },
-          {
-            isCorrect: false,
-            text: '답변3',
-          },
-          {
-            isCorrect: false,
-            text: '답변4',
-          },
-        ],
-      },
-    ],
-  };
-
-  this.setState = (nextState) => {
-    this.state = nextState;
-    questions.setState(this.state.questions);
+    pageTitle: 'Quiz Pro',
+    quizzes: [],
+    newQuestion: {
+      question: '',
+      answers: Array(4).fill(''),
+      correctIndex: null,
+    },
+    isTake: false,
   };
 
   new Header({
     targetEl,
-    textContent: this.state.title,
+    textContent: this.state.pageTitle,
   });
 
   targetEl.appendChild(contentWrapperEl);
 
-  new CreateQuestion({
+  const createQuestion = new CreateQuestion({
     targetEl: contentWrapperEl,
-    onSubmit: () => {
-      console.log('질문추가');
+    initialState: {
+      isTake: this.state.isTake,
+      newQuestion: this.state.newQuestion,
+    },
+    onSubmit: (newQuestion) => {
+      if (!newQuestion.correctIndex) {
+        alert('정답을 체크해주세요.');
+        return;
+      }
+
+      if (!newQuestion.question) {
+        alert('form을 모두 작성해주세요.');
+        return;
+      }
+
+      this.setState({
+        ...this.state,
+        quizzes: [...this.state.quizzes, newQuestion],
+        newQuestion: {
+          question: '',
+          answers: Array(4).fill(''),
+          correctIndex: null,
+        },
+      });
+
+      return true;
+    },
+    onChange: (e) => {
+      if (e.target.id === 'question') {
+        this.setState({
+          ...this.state,
+          newQuestion: {
+            ...this.state.newQuestion,
+            question: e.target.value,
+          },
+        });
+      } else if (e.target.type === 'radio') {
+        const { answerId } = e.target.closest('.form-row').dataset;
+        this.setState({
+          ...this.state,
+          newQuestion: {
+            ...this.state.newQuestion,
+            correctIndex: answerId,
+          },
+        });
+      } else if (e.target.type === 'text') {
+        const { answerId } = e.target.closest('.form-row').dataset;
+        const nextState = this.state.newQuestion.answers.map((answer, i) =>
+          parseInt(answerId) === i ? e.target.value : answer
+        );
+        this.setState({
+          ...this.state,
+          newQuestion: {
+            ...this.state.newQuestion,
+            answers: nextState,
+          },
+        });
+      }
     },
     onDelete: (e) => {
       this.setState({
         ...this.state,
-        questions: [],
+        quizzes: [],
+        isTake: false,
       });
     },
     onTake: (e) => {
-      console.log('풀자');
+      this.setState({
+        ...this.state,
+        isTake: true,
+      });
     },
   });
 
-  const questions = new Questions({
+  const quizzes = new Quizzes({
     targetEl: contentWrapperEl,
-    initialstate: this.state.questions,
+    initialstate: {
+      quizzes: this.state.quizzes,
+      isTake: this.state.isTake,
+    },
   });
+
+  this.setState = (nextState) => {
+    this.state = nextState;
+    createQuestion.setState({
+      newQuestion: this.state.newQuestion,
+      isTake: this.state.isTake,
+    });
+    quizzes.setState({
+      quizzes: this.state.quizzes,
+      isTake: this.state.isTake,
+    });
+  };
 }
