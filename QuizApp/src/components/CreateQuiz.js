@@ -33,7 +33,7 @@ export default function ({
             (answer, i) => `
           <div class="form-row" data-answer-id="${i}">
             <input type="radio" name="answers" ${isTake ? 'disabled' : ''} ${
-              parseInt(newQuestion.correctIndex) === i ? 'checked' : ''
+              Number(newQuestion.correctIndex) === i ? 'checked' : ''
             } />
             <input type="text" value="${answer}" ${isTake ? 'disabled' : ''} />
           </div>
@@ -78,3 +78,4 @@ export default function ({
 
 // form.... 어렵다. 여러input의 값들을 어떻게 state로 관리해야하는걸까.
 // 또 이 state의 vaildate는 어떻게 체크해야하는걸까.
+// newQuestion 상태없이 isTake상태만 관리하고 form 값은 dom에 접근해서 submit할때 전달하는 방식으로 하는거 어떨까?

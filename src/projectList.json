@@ -111,7 +111,7 @@
     "id": "20",
     "title": "Wikipedia API",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "url": ""
+    "url": "WikipediaAPI"
   },
   {
     "id": "21",
@@ -123,13 +123,13 @@
     "id": "22",
     "title": "Quiz app",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "url": ""
+    "url": "QuizApp"
   },
   {
     "id": "23",
     "title": "Recipe API",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "url": ""
+    "url": "RecipeAPI"
   },
   {
     "id": "24",
