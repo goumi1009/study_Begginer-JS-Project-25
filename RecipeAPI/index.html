@@ -16,150 +16,176 @@
   </head>
   <body>
     <div class="App">
-      <header class="app-header">
-        <div class="container">
-          <h1>Recipeboard</h1>
-          <input type="color" name="" id="" />
-          <div class="side-nav">
-            <article class="profile">
-              <i data-feather="user"></i>
-              <p>Goumi009</p>
-            </article>
-            <nav>
-              <ul>
-                <li>
-                  <i data-feather="book"></i>
-                  <p>My recipes</p>
-                </li>
-                <li>
-                  <i data-feather="feather"></i>
-                  <p>Add recipe</p>
-                </li>
-                <li>
-                  <i data-feather="bookmark"></i>
-                  <p>Saved recipes</p>
-                </li>
-                <li>
-                  <i data-feather="search"></i>
-                  <p>Search recipes</p>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
-      <main class="app-contents">
-        <article class="page-contents">
+      <main class="app-contents container">
+        <article class="page-content" id="my">
           <h2>My recipes</h2>
-          <article class="card">
-            <div class="thumbnail">
-              <img src="" alt="" />
-            </div>
-            <h3>Title</h3>
-            <dl>
-              <dt>Descripton</dt>
-              <dd>요리에 대한 설명 입니다.</dd>
-            </dl>
-            <dl>
-              <dt>Ingredients</dt>
-              <dd>요리에 필요한 재료 입니다.</dd>
-            </dl>
-            <dl>
-              <dt>instructions</dt>
-              <dd>요리의 조리법 입니다.</dd>
-            </dl>
-            <button type="button">View more</button>
-            <button type="button"><i data-feather="trash-2"></i></button>
-          </article>
-          <article class="card">
-            <div class="thumbnail">
-              <img src="" alt="" />
-            </div>
-            <h3>Title</h3>
-            <dl>
-              <dt>Descripton</dt>
-              <dd>요리에 대한 설명 입니다.</dd>
-            </dl>
-            <dl>
-              <dt>Ingredients</dt>
-              <dd>요리에 필요한 재료 입니다.</dd>
-            </dl>
-            <dl>
-              <dt>instructions</dt>
-              <dd>요리의 조리법 입니다.</dd>
-            </dl>
-            <button type="button">View more</button>
-            <button type="button"><i data-feather="trash-2"></i></button>
-          </article>
-          <article class="card">
-            <div class="thumbnail">
-              <img src="" alt="" />
-            </div>
-            <h3>Title</h3>
-            <dl>
-              <dt>Descripton</dt>
-              <dd>요리에 대한 설명 입니다.</dd>
-            </dl>
-            <dl>
-              <dt>Ingredients</dt>
-              <dd>요리에 필요한 재료 입니다.</dd>
-            </dl>
-            <dl>
-              <dt>instructions</dt>
-              <dd>요리의 조리법 입니다.</dd>
-            </dl>
-            <button type="button">View more</button>
-            <button type="button"><i data-feather="trash-2"></i></button>
-          </article>
-          <article class="card">
-            <div class="thumbnail">
-              <img src="" alt="" />
-            </div>
-            <h3>Title</h3>
-            <dl>
-              <dt>Descripton</dt>
-              <dd>요리에 대한 설명 입니다.</dd>
-            </dl>
-            <dl>
-              <dt>Ingredients</dt>
-              <dd>요리에 필요한 재료 입니다.</dd>
-            </dl>
-            <dl>
-              <dt>instructions</dt>
-              <dd>요리의 조리법 입니다.</dd>
-            </dl>
-            <button type="button">View more</button>
-            <button type="button"><i data-feather="trash-2"></i></button>
-          </article>
+          <div class="card-wrapper">
+            <article class="card">
+              <div class="thumbnail">
+                <img
+                  src="https://images.unsplash.com/photo-1647693189799-7ada2c02be91?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1552&q=80"
+                  alt=""
+                />
+              </div>
+              <h3 style="color: mediumslateblue;">Title</h3>
+              <dl>
+                <dt>Descripton</dt>
+                <dd>요리에 대한 설명 입니다.</dd>
+              </dl>
+              <dl>
+                <dt>Ingredients</dt>
+                <dd>요리에 필요한 재료 입니다.</dd>
+              </dl>
+              <dl>
+                <dt>instructions</dt>
+                <dd>요리의 조리법 입니다.</dd>
+              </dl>
+              <button type="button">View more</button>
+              <button type="button" class="btn-del">
+                <i data-feather="trash-2"></i>
+              </button>
+            </article>
+            <article class="card">
+              <div class="thumbnail">
+                <img src="" alt="" />
+              </div>
+              <h3>Title</h3>
+              <dl>
+                <dt>Descripton</dt>
+                <dd>요리에 대한 설명 입니다.</dd>
+              </dl>
+              <dl>
+                <dt>Ingredients</dt>
+                <dd>요리에 필요한 재료 입니다.</dd>
+              </dl>
+              <dl>
+                <dt>instructions</dt>
+                <dd>요리의 조리법 입니다.</dd>
+              </dl>
+              <button type="button">View more</button>
+              <button type="button"><i data-feather="trash-2"></i></button>
+            </article>
+            <article class="card">
+              <div class="thumbnail">
+                <img src="" alt="" />
+              </div>
+              <h3>Title</h3>
+              <dl>
+                <dt>Descripton</dt>
+                <dd>요리에 대한 설명 입니다.</dd>
+              </dl>
+              <dl>
+                <dt>Ingredients</dt>
+                <dd>요리에 필요한 재료 입니다.</dd>
+              </dl>
+              <dl>
+                <dt>instructions</dt>
+                <dd>요리의 조리법 입니다.</dd>
+              </dl>
+              <button type="button">View more</button>
+              <button type="button"><i data-feather="trash-2"></i></button>
+            </article>
+            <article class="card">
+              <div class="thumbnail">
+                <img src="" alt="" />
+              </div>
+              <h3>Title</h3>
+              <dl>
+                <dt>Descripton</dt>
+                <dd>요리에 대한 설명 입니다.</dd>
+              </dl>
+              <dl>
+                <dt>Ingredients</dt>
+                <dd>요리에 필요한 재료 입니다.</dd>
+              </dl>
+              <dl>
+                <dt>instructions</dt>
+                <dd>요리의 조리법 입니다.</dd>
+              </dl>
+              <button type="button">View more</button>
+              <button type="button"><i data-feather="trash-2"></i></button>
+            </article>
+          </div>
         </article>
-        <article class="page-content">
+        <article class="page-content" id="add">
           <h2>Add recipe</h2>
-          <form>
+          <form class="add-recipe-form">
             <div class="form-image">
               <i data-feather="image"></i>
               <input type="file" />
             </div>
-            <label for="name" class="hidden">Name of the recipe</label>
-            <input type="text" id="name" placeholder="Name of the recipe" />
-            <label for="description" class="hidden">Description of dish</label>
-            <textarea
-              name=""
-              id="description"
-              placeholder="Description of dish"
-            ></textarea>
-            <label for="ingredients" class="hidden">ingredients</label>
-            <textarea
-              name=""
-              id="ingredients"
-              placeholder="ingredients"
-            ></textarea>
-            <label for="instructions" class="hidden">How to make it</label>
-            <textarea
-              name=""
-              id="instructions"
-              placeholder="How to make it"
-            ></textarea>
+            <div class="form-input">
+              <label for="name" class="hidden">Name of the recipe</label>
+              <input type="text" id="name" placeholder="Name of the recipe" />
+            </div>
+            <div class="form-input">
+              <label for="description" class="hidden"
+                >Description of dish</label
+              >
+              <textarea
+                name=""
+                id="description"
+                placeholder="Description of dish"
+              ></textarea>
+            </div>
+            <div class="form-input">
+              <label for="ingredients" class="hidden">ingredients</label>
+              <textarea
+                name=""
+                id="ingredients"
+                placeholder="ingredients"
+              ></textarea>
+            </div>
+            <div class="form-input">
+              <label for="instructions" class="hidden">How to make it</label>
+              <textarea
+                name=""
+                id="instructions"
+                placeholder="How to make it"
+              ></textarea>
+            </div>
+            <button class="btn-add" style="background-color: mediumslateblue;">
+              Publish recipe
+            </button>
           </form>
+        </article>
+        <article class="page-content" id="search">
+          <h2>Search recipes</h2>
+          <form action="" class="search-form">
+            <label for="" class="hidden"></label>
+            <input type="text" placeholder="search-recipes..." />
+          </form>
+          <div class="card-wrapper">
+            <article class="card">
+              <div class="thumbnail">
+                <img
+                  src="https://images.unsplash.com/photo-1647693189799-7ada2c02be91?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1552&q=80"
+                  alt=""
+                />
+              </div>
+              <h3 style="color: mediumslateblue;">Title</h3>
+              <dl>
+                <dt>Calories</dt>
+                <dd>요리에 대한 설명 입니다.</dd>
+              </dl>
+              <dl>
+                <dt>Diet Labels</dt>
+                <dd>요리에 필요한 재료 입니다.</dd>
+              </dl>
+              <dl>
+                <dt>cautions</dt>
+                <dd>요리의 조리법 입니다.</dd>
+              </dl>
+              <dl>
+                <dt>Ingredients</dt>
+                <dd>요리의 조리법 입니다.</dd>
+              </dl>
+              <button type="button">View more</button>
+              <button type="button" class="btn-save">
+                <i data-feather="save"></i>
+              </button>
+            </article>
+          </div>
         </article>
       </main>
     </div>
